@@ -2,6 +2,7 @@ import { cardConfigurationSchema } from '@/modules/cards/models/card-configurati
 import { emergencyUnlockConfigurationSchema } from '@/modules/emergency-unlock/types/emergencyUnlockConfiguration'
 import type { Extension } from '@/modules/extensions/types/Extension'
 import { keyholderAiConfigurationSchema } from '@/modules/keyholder-ai/domain/models/keyholder-ai-configuration'
+import { ParentalControlsConfigurationSchema } from '@/modules/parental-controls/types/publicTypes'
 
 export const extensions: Extension[] = [
   {
@@ -19,6 +20,11 @@ export const extensions: Extension[] = [
     displayName: 'Keyholder AI',
     configurationSchema: keyholderAiConfigurationSchema,
   },
+  {
+    internalId: 'parental-controls',
+    displayName: 'Parental Controls',
+    configurationSchema: ParentalControlsConfigurationSchema,
+  },
 ]
 
 export const extensionBySlug = (slug: string) => {
@@ -30,6 +36,9 @@ export const extensionBySlug = (slug: string) => {
   }
   if (slug === 'keyholder-ai') {
     return extensions[2]
+  }
+  if (slug === 'parental-controls') {
+    return extensions[3]
   }
   throw new Error(`Extension with slug ${slug} not found`)
 }

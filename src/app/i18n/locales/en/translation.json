@@ -31,5 +31,102 @@
     "disclaimer_alert_for_keyholder": "Emergency unlock is not a substitute for your wearer's own emergency unlock method. Your wearer is responsible for their safety in case of an emergency.",
     "disclaimer_alert_for_wearer": "Emergency unlock is not a substitute for your own emergency unlock method. You are responsible for your safety in case of an emergency.",
     "learn_how_to_secure_your_keys": "Learn how to secure your keys."
+  },
+  "parental_controls": {
+    "dismiss": "Dismiss",
+    "description_for_keyholder": "Control the wearers devices. The wearer shall provide their parental control accounts to this extension once they entered the lock.",
+    "description_for_wearer": "Let the owner of this lock control your devices. You can register your parental control account to this extension once the lock is started. You can add multiple accounts (e.g. a free account for each of your devices). The Parental Control App supports Windows, Android, iOS and macOS. There is no excuse to not to add all your devices!",
+    "account_freezing": "Lockdown Parental Control Account(s)",
+    "account_freezing_description_for_wearer": "Allow the owner to freeze your Parental Control account(s). When frozen, the email and password for your Parental Control account are temporary changed and you will temporary lose control over your account. Your accounts are unfrozen when the lock is opened or deserted. Not recommended for paid Parental Control account subscriptions.",
+    "account_freezing_description_for_keyholder": "Allow you to freeze the wearers Parental Control account(s). When frozen, the wearer will temporary lose control over their account until the lock is opened or deserted.",
+    "account_freezing_warning": "This is a dangerous setting. It case of technical problems or outages of chaster, your Parental Control account may get lost. Chaster can not help to recover them. Use with care.",
+    "accountList": {
+      "title": "Linked Accounts",
+      "summary": "This list displays all accounts that are linked to this lock and the devices they control.",
+      "freeze_accounts": "Lockdown Accounts",
+      "no_accounts_for_keyholder": "There are no linked accounts yet. Push your wearer to add their parental control accounts on the Extension page.",
+      "no_accounts_for_wearer": "There are no linked accounts yet. Set up your devices in the parental control app and then link these accounts here.",
+      "refresh": "Refresh",
+      "unfreeze_accounts": "Revoke Account Lockdown",
+      "no_devices": "No Devices yet"
+    },
+    "filterContent": {
+      "title": "Category Filtering",
+      "description": "Select a web category below to set filtering rules."
+    },
+    "filterDomains": {
+      "title": "Domain Filtering",
+      "description": "Set filtering rules for specific websites. These rules override the category rules. Note that chaster.app can not be blocked."
+    },
+    "blockApps": {
+      "title": "Games & Apps",
+      "description": "Allow or block your lockee's apps."
+    },
+    "linkAccount": {
+      "title": "Link new Account",
+      "summary": "Provide the credentials for accounts that shall be managed by this lock. You link as many free or premium accounts as you like. The provided credentials will only be stored for the duration of the session.",
+      "freezeWarning": "This lock may prevent you from accessing your linked Parental Control accounts until the lock is opened or deserted.",
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your Email Address"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your Password"
+      },
+      "submit": "Link Account",
+      "success": "Account successfully linked"
+    },
+    "capabilities": {
+      "title": "Capabilities",
+      "description_for_wearer": "Choose what capabilities the owner of this lock shall have over your devices",
+      "description_for_keyholder": "Choose what capabilities you want to have over the wearers devices",
+      "FILTER_CONTENT": "Filter Content",
+      "FILTER_CONTENT_icon": "faFilterCircleXmark",
+      "FILTER_CONTENT_description_for_wearer": "The owner can block websites and content categories on your devices",
+      "FILTER_CONTENT_description_for_keyholder": "You can block websites and content categories on the wearers devices",
+      "BLOCK_APPS": "Block Apps",
+      "BLOCK_APPS_icon": "faPlug",
+      "BLOCK_APPS_description_for_wearer": "The owner can block, or set time limits for apps on your devices",
+      "BLOCK_APPS_description_for_keyholder": "You can block, or set time limits for apps on the wearers devices",
+      "TRACK_ACTIVITY": "Track Activity",
+      "TRACK_ACTIVITY_icon": "faPersonRunning",
+      "TRACK_ACTIVITY_description_for_wearer": "Allow the owner to track activities on your devices (app usage, web searches and browser history)",
+      "TRACK_ACTIVITY_description_for_keyholder": "Allow the owner to track activities on the wearers devices (app usage, web searches and search history)",
+      "TRACK_LOCATION": "Track Geolocations",
+      "TRACK_LOCATION_icon": "faLocationDot",
+      "TRACK_LOCATION_description_for_wearer": "Allow the owner to track the geo-location of your devices",
+      "TRACK_LOCATION_description_for_keyholder": "Allow you to track the geo-location of the wearers devices",
+      "LOCK_DEVICES": "Lock Devices",
+      "LOCK_DEVICES_description_for_wearer": "⚠ Allow the owner to set up device time limits and lock down your devices",
+      "LOCK_DEVICES_description_for_keyholder": "⚠ Allow you to set up device time limits and lock down the wearers devices",
+      "LOCK_DEVICES_warning": "This is a dangerous setting. Choose only if there is a sufficient level of trust between keyholder and wearer"
+    },
+    "webcategory": {
+      "ALCOHOL": "Alcohol",
+      "MATURE_CONTENT": "Mature Content",
+      "SOCIAL_NETWORKS": "Social Networks",
+      "CHAT": "Chat",
+      "DRUGS": "Drugs",
+      "ENTERTAINMENT": "Entertainment",
+      "GAMBLING": "Gambling",
+      "GAMES": "Games",
+      "FORUMS": "Forums",
+      "NEWS": "News",
+      "EDUCATION": "Education",
+      "FILE_SHARING": "File Sharing",
+      "PORNOGRAPHY": "Pornography",
+      "SEARCH_ENGINES": "Search Engines",
+      "SHOPPING": "Shopping",
+      "TOBACCO": "Tobacco",
+      "PROXIES_LOOPHOLES": "Proxies and Loopholes",
+      "VIOLENCE": "Violence",
+      "WEAPONS": "Weapons",
+      "WEBMAIL": "Webmail",
+      "PROFANITY": "Profanity"
+    },
+    "hide_changes": "Hide Changes",
+    "hide_changes_description_for_wearer": "Changes to device rules made by the keyholder will be hidden in the lock history",
+    "hide_changes_description_for_keyholder": "Changes to device rules made by you will be hidden in the lock history"
   }
 }
