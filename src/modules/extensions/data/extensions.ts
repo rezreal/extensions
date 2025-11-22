@@ -25,20 +25,17 @@ export const extensions: Extension[] = [
     displayName: 'Parental Controls',
     configurationSchema: ParentalControlsConfigurationSchema,
   },
+  {
+    internalId: 'time-and-place',
+    displayName: 'Time & Place',
+    configurationSchema: ParentalControlsConfigurationSchema,
+  },
 ]
 
 export const extensionBySlug = (slug: string) => {
-  if (slug === 'cards') {
-    return extensions[1]
+  const extension = extensions.find((e) => e.internalId === slug)
+  if (!extension) {
+    throw new Error(`Extension with slug ${slug} not found`)
   }
-  if (slug === 'emergency-unlock') {
-    return extensions[0]
-  }
-  if (slug === 'keyholder-ai') {
-    return extensions[2]
-  }
-  if (slug === 'parental-controls') {
-    return extensions[3]
-  }
-  throw new Error(`Extension with slug ${slug} not found`)
+  return extension
 }

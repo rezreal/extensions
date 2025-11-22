@@ -1,4 +1,10 @@
 {
+  "common": {
+    "key_ordinal_one": "st", 
+    "key_ordinal_two": "nd", 
+    "key_ordinal_few": "rd", 
+    "key_ordinal_other": "th" 
+  },
   "emergency_unlock": {
     "description_for_keyholder": "Let your wearers buy emergency keys or use a safeword to unlock themselves in case of emergency.",
     "description_for_wearer": "You can buy emergency keys or use a safeword to unlock yourself in case of emergency.",
@@ -128,5 +134,13 @@
     "hide_changes": "Hide Changes",
     "hide_changes_description_for_wearer": "Changes to device rules made by the keyholder will be hidden in the lock history",
     "hide_changes_description_for_keyholder": "Changes to device rules made by you will be hidden in the lock history"
+  },
+  "time-and-place": {
+    "frequency": {
+      "HOURLY": "hour",
+      "DAILY": "day",
+      "WEEKLY": "week",
+      "MONTHLY": "month"
+    }
   }
 }

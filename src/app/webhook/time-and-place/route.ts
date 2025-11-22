@@ -7,15 +7,18 @@ import type {
   ExtensionSessionUpdated,
 } from '@chasterapp/chaster-js'
 import {
-  ActionLogCreatedEventEnum,
   ExtensionSessionCreatedEventEnum,
   ExtensionSessionDeletedEventEnum,
   ExtensionSessionUpdatedEventEnum,
+  PartnerExtensionsApi,
 } from '@chasterapp/chaster-js/dist/api'
 import type { NextRequest } from 'next/server'
 import { isBasicAuthed } from '@/lib/webhooks'
-import { getSession } from '@/modules/parental-controls/lib/getSession'
-import { unfreezeAccount } from '@/modules/parental-controls/actions/unfreezeAccounts'
+import {
+  TimeAndPlaceConfigurationSchema,
+  TimeAndPlaceSessionDataScheme,
+} from '@/modules/time-and-place/types/publicTypes'
+import { createApiInstance } from '@/modules/network/helpers/createApiInstance'
 
 type WebhookEvent =
   | ExtensionSessionCreated
@@ -41,7 +44,7 @@ export async function POST(request: NextRequest) {
       ExtensionSessionDeletedEventEnum.ExtensionSessionDeleted
   ) {
     const slug = webhookEvent.data.extension.slug
-    if (slug !== 'parental-controls') {
+    if (slug !== 'time-and-place') {
       return new Response(null, {
         status: 400,
         statusText: 'Sending data for wrong extension.',
@@ -49,32 +52,38 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  console.info('webhook request:', request)
-  console.info('webhook request body:', webhookEvent)
+  if (
+    webhookEvent.event ===
+      ExtensionSessionCreatedEventEnum.ExtensionSessionCreated ||
+    webhookEvent.event ===
+      ExtensionSessionUpdatedEventEnum.ExtensionSessionUpdated
+  ) {
+    const data = TimeAndPlaceSessionDataScheme.parse(
+      webhookEvent.data.session.data,
+    )
+    const config = TimeAndPlaceConfigurationSchema.parse(
+      webhookEvent.data.session.config,
+    )
 
-  if (webhookEvent.event === ActionLogCreatedEventEnum.ActionLogCreated) {
-    if (
-      webhookEvent.data.actionLog.type === 'unlocked' ||
-      webhookEvent.data.actionLog.type === 'deserted'
-    ) {
-      const sessionId = webhookEvent.data.sessionId
-      const { data } = await getSession(sessionId)
-
-      let allGood = true
-      for (const account of data.accounts) {
-        try {
-          await unfreezeAccount(sessionId, data, account)
-        } catch (e) {
-          console.warn(
-            `Failed to unfreeze account ${account.id} in session ${sessionId}.`,
-          )
-          allGood = false
-        }
-      }
-      if (!allGood) {
-        throw new Error(
-          `Could not unfreeze all accounts for session ${sessionId}`,
-        )
+    const unfinishedUnlockations = config.unlockations.filter((u) =>
+      data.unlocked.includes(u.id),
+    )
+    if (unfinishedUnlockations.length > 0) {
+      const response = await createApiInstance(
+        PartnerExtensionsApi,
+      ).patchExtensionSession(webhookEvent.data.session.sessionId, {
+        metadata: {
+          ...webhookEvent.data.session.metadata,
+          reasonsPreventingUnlocking: [
+            `${unfinishedUnlockations.length} times and places are missing`,
+          ],
+        },
+      })
+      if (response.status >= 300) {
+        return new Response(null, {
+          status: response.status,
+          statusText: response.statusText,
+        })
       }
     }
   }

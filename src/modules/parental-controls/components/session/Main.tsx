@@ -87,20 +87,19 @@ function Main({ auth, token }: Props) {
   }
 
   const formHandler = filterContentForm.handleSubmit(onSubmit)
+  const canTrackActivity =
+    auth.session.config.capabilities.includes('TRACK_ACTIVITY')
 
   useEffect(() => {
     async function f() {
-      if (
-        auth.session.config.capabilities.includes('TRACK_ACTIVITY') &&
-        auth.role === PartnerUserRoleEnum.Keyholder
-      ) {
+      if (canTrackActivity && auth.role === PartnerUserRoleEnum.Keyholder) {
         const activity: readonly TimelineEntry[] = await showActivity(token)
         setActivity(activity)
       }
     }
 
     f().catch((e) => console.error(e))
-  }, [token, auth.role])
+  }, [token, auth.role, canTrackActivity])
 
   useEffect(() => {
     async function f() {
